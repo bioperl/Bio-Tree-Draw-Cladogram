@@ -1,7 +1,7 @@
 #
 # BioPerl module for Cladogram
 #
-# Please direct questions and support issues to <bioperl-l@bioperl.org> 
+# Please direct questions and support issues to <bioperl-l@bioperl.org>
 #
 # Cared for by Gabriel Valiente <valiente@lsi.upc.edu>
 #
@@ -86,15 +86,15 @@ the Bioperl mailing list.  Your participation is much appreciated.
   bioperl-l@bioperl.org                  - General discussion
   http://bioperl.org/wiki/Mailing_lists  - About the mailing lists
 
-=head2 Support 
+=head2 Support
 
 Please direct usage questions or support issues to the mailing list:
 
 I<bioperl-l@bioperl.org>
 
-rather than to the module maintainer directly. Many experienced and 
-reponsive experts will be able look at the problem and quickly 
-address it. Please include a thorough description of the problem 
+rather than to the module maintainer directly. Many experienced and
+reponsive experts will be able look at the problem and quickly
+address it. Please include a thorough description of the problem
 with code and data examples if at all possible.
 
 =head2 Reporting Bugs
@@ -120,6 +120,7 @@ Internal methods are usually preceded with a _
 =cut
 
 package Bio::Tree::Draw::Cladogram;
+
 use strict;
 
 use PostScript::TextBlock;
@@ -153,7 +154,7 @@ my $bootstrap; # Draw Bootstrap boolean
 
  Title   : new
  Usage   : my $obj = Bio::Tree::Draw::Cladogram->new();
- Function: Builds a new Bio::Tree::Draw::Cladogram object 
+ Function: Builds a new Bio::Tree::Draw::Cladogram object
  Returns : Bio::Tree::Draw::Cladogram
  Args    : -tree => Bio::Tree::Tree object
            -second => Bio::Tree::Tree object (optional)
@@ -177,9 +178,9 @@ sub new {
 
   my $self = $class->SUPER::new(@args);
   ($t1, $t2, $font, $size, my $top, my $bottom, my $left, my $right,
-    $tip, my $column, $compact, $ratio, $colors,$bootstrap) = 
-	$self->_rearrange([qw(TREE SECOND FONT SIZE TOP BOTTOM LEFT RIGHT 
-			      TIP COLUMN COMPACT RATIO COLORS BOOTSTRAP)], 
+    $tip, my $column, $compact, $ratio, $colors,$bootstrap) =
+	$self->_rearrange([qw(TREE SECOND FONT SIZE TOP BOTTOM LEFT RIGHT
+			      TIP COLUMN COMPACT RATIO COLORS BOOTSTRAP)],
 				   @args);
   $font ||= "Helvetica-Narrow";
   $size ||= 12;
@@ -358,7 +359,7 @@ sub new {
   } else { # set to aspect ratio and use branch lengths if available
 
     my $total_height = (scalar($t1->get_leaf_nodes) - 1) * $ystep;
-    my $scale_factor = $total_height * $ratio / $t1->get_root_node->height;    
+    my $scale_factor = $total_height * $ratio / $t1->get_root_node->height;
 
     $width = $t1->get_root_node->height * $scale_factor;
     $width += $left + $xstep;
@@ -423,8 +424,8 @@ sub new {
 
  Title   : print
  Usage   : $obj->print();
- Function: Outputs $obj in Encapsulated PostScript (EPS) format 
- Returns : 
+ Function: Outputs $obj in Encapsulated PostScript (EPS) format
+ Returns :
  Args    : -file => filename (optional)
 
 =cut
@@ -460,7 +461,7 @@ sub print {
       # print $xx{$node}, " ", $yy{$node}, " lineto\n";
       if ($colors) {
 	print $INFO "stroke\n";
-	print $INFO $Rcolor{$node}, " ", $Gcolor{$node}, " ", 
+	print $INFO $Rcolor{$node}, " ", $Gcolor{$node}, " ",
 	$Bcolor{$node}, " setrgbcolor\n";
       }
       print $INFO $xx{$node}, " ", $yy{$node}, " moveto\n";
@@ -471,8 +472,8 @@ sub print {
 	  print $INFO $xx{$node->ancestor}, " ", $yy{$node}, " moveto\n";
       }
       print $INFO $xx{$node->ancestor}, " ", $yy{$node->ancestor}, " lineto\n";
-      
-      
+
+
     }
   }
   my $ymin = $yy{$root1};
